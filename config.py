@@ -1,2 +1,2 @@
-TOKEN = ''
-ID_ADMIN = 'здесь не должно быть ковычек'
+TOKEN = '7629333505:AAETuBvERZLyAY6qWuSyO9XiZjjprKIEb9M'
+ID_ADMIN = 7781117889

@@ -4,7 +4,9 @@ from aiogram.types import Message
 from config import ID_ADMIN
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+
 router = Router()
+
 
 @router.message(Command("admin"))
 async def admin_cmd(message: Message):
