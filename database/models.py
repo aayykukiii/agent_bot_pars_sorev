@@ -3,9 +3,7 @@ from sqlalchemy.orm import relationship
 from datetime import datetime
 from .db import Base
 
-
-
-# Связующая таблица many-to-many
+# many-to-many таблица
 vacancy_skill = Table(
     "vacancy_skill",
     Base.metadata,
@@ -13,9 +11,7 @@ vacancy_skill = Table(
     Column("skill_id", Integer, ForeignKey("skills.id", ondelete="CASCADE")),
 )
 
-
-
-# Таблица Skills
+# SKILL
 class Skill(Base):
     __tablename__ = "skills"
 
@@ -31,17 +27,15 @@ class Skill(Base):
     def __repr__(self):
         return f"<Skill(id={self.id}, name={self.name})>"
 
-
-
-# Таблица Vacancies
+# VACANCY
 class Vacancy(Base):
     __tablename__ = "vacancies"
 
     id = Column(Integer, primary_key=True)
     title = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    salary = Column(Integer, nullable=True)
-    url = Column(String, nullable=True)
+    description = Column(Text)
+    salary = Column(Integer)
+    url = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     skills = relationship(
@@ -55,15 +49,13 @@ class Vacancy(Base):
     def __repr__(self):
         return f"<Vacancy(id={self.id}, title={self.title})>"
 
-
-
-# Таблица Users
+# USER
 class User(Base):
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
     telegram_id = Column(Integer, unique=True, nullable=False)
-    username = Column(String, nullable=True)
+    username = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
 
     favorites = relationship("Favorite", back_populates="user", cascade="all, delete")
@@ -71,9 +63,7 @@ class User(Base):
     def __repr__(self):
         return f"<User(id={self.id}, telegram_id={self.telegram_id})>"
 
-
-
-# Таблица Favorites
+# FAVORITE
 class Favorite(Base):
     __tablename__ = "favorites"
 
